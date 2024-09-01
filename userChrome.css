@@ -1,0 +1,183 @@
+:root {
+  --showDelay: 500ms;
+  --hideDelay: 750ms;
+  --speed: 250ms;
+  --sidebarWidth: 450px;
+}
+
+/*ignore when customizing*/
+:root:not([customizing]) {
+/* hide nav-bar */
+  #nav-bar {
+    opacity: 50 !important;
+    min-height: 0px !important;
+    max-height: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: -0px !important;
+    transition: all var(--speed) ease-in-out !important;
+    transition-delay: var(--hideDelay) !important;
+    z-index: -5 !important;
+  }
+
+/* show nav-bar on navigator-toolbox hover/focus */
+  #navigator-toolbox:hover :-moz-any(#nav-bar),
+  #navigator-toolbox:focus-within :-moz-any(#nav-bar) {
+    opacity: 100 !important;
+    min-height: 32px !important;
+    max-height: 32px !important;
+    margin-top: 0px !important;
+    margin-bottom: -32px !important;
+    transition: all var(--speed) ease-in !important;
+    transition-delay: var(--showDelay) !important;
+    z-index: 5 !important;
+  }
+
+/* slide urlbar-container */
+  #urlbar-container {
+    padding-bottom: 5px !important;
+    transform: translateY(-20px) !important;
+    transition: transform var(--speed) ease-in-out !important;
+    transition-delay: var(--hideDelay) !important;
+  }
+  
+  #navigator-toolbox:hover #urlbar-container,
+  #navigator-toolbox:focus-within #urlbar-container {
+    transform: translateY(0px) !important;
+    transition: transform var(--speed) ease-in !important;
+    transition-delay: var(--showDelay) !important;
+  }
+
+/* instant animation on focus */
+  #navigator-toolbox:focus-within :-moz-any(#nav-bar) {
+    transition: none !important;
+  }
+  #navigator-toolbox:focus-within #urlbar-container {
+    transition: none !important;
+  }
+}
+
+/*hide back and forward buttons when not active */
+#forward-button[disabled],
+#back-button[disabled] {
+  display: none;
+}
+
+/*home button is not centered wtf */
+#home-button {
+  padding: 0px 0px 1px 0px !important;
+}
+/*more compact button spaces */
+#forward-button,
+#back-button,
+#downloads-button,
+#reload-button {
+  padding: 0px !important;
+}
+
+/*floating Bookmarks and History panels */
+#sidebar-box {
+  position: fixed !important;
+  top: 2px !important;
+  bottom: 2px !important;
+  left: 0px !important;
+  width: var(--sidebarWidth) !important;
+  border-radius: 8px !important;
+  border: 2px solid rgb(113, 112, 120) !important;
+  z-index: 1000 !important;
+}
+
+/*move screenshot panel in front of the nav-bar */
+#screenshotsPagePanel {
+  z-index: 6;
+}
+
+/*hide new tab button when not hovering */
+#tabs-newtab-button {
+  opacity: 0;
+  transition: var(--speed) opacity ease;
+  transition-delay: var(--speed) !important;
+}
+
+#navigator-toolbox:hover #tabs-newtab-button {
+  opacity: 80%;
+  transition: var(--speed) opacity ease;
+}
+
+#tabs-newtab-button .toolbarbutton-icon {
+  padding: 2px !important;
+  width: 20px !important;
+  height: 20px !important;
+  margin-top: 1px !important;
+  margin-left: 1px !important;
+}
+
+/*hide the close button from non active tabs */
+#tabbrowser-tabs .tabbrowser-tab:not([pinned], [selected], :hover) .tab-close-button {
+  opacity: 0 !important;
+}
+
+#tabbrowser-tabs .close-icon {
+  padding: 1px !important;
+  width: 14px !important;
+  height: 14px !important;
+  margin-top: 2px !important;
+}
+
+#tabbrowser-tabs .tab-close-button:hover {
+  background-color: rgb(182, 21, 35) !important;
+}
+
+/*hide bottom of tab bar */
+.tab-background {
+  min-height: 0 !important;
+}
+
+/*remove spaces from left and right of tabs */
+.titlebar-spacer[type="pre-tabs"],
+.titlebar-spacer[type="post-tabs"] {
+  display: none;
+}
+
+/*tab-Container color bar */
+.tab-context-line {
+  border-radius: 3px 3px 0 0 !important;
+  margin: 0px !important;
+}
+
+/*tabs smaller when not focused */
+.tabbrowser-tab {
+  transition: min-width 0.3s cubic-bezier(0.270, 0.910, 0.435, 1.280), 
+              max-width 0.3s cubic-bezier(0.270, 0.910, 0.435, 1.280), 
+              height 0.1s ease !important;
+  height: 100%;
+}
+.tabbrowser-tab[fadein]:not([pinned]) {
+  max-width: 150px !important;
+}
+.tabbrowser-tab[selected]:not([pinned]) {
+  min-width: 250px !important;
+  max-width: 250px !important;
+}
+
+/*minimize, maximize, and close buttons are smaller and closer together*/
+.titlebar-button.titlebar-min,
+.titlebar-button.titlebar-restore,
+.titlebar-button.titlebar-max,
+.titlebar-button.titlebar-close {
+  width: 8px !important;
+}
+
+/*color the max and min buttons*/
+.titlebar-button.titlebar-min:hover {
+  background: rgb(65,105,225) !important;
+}
+
+.titlebar-button.titlebar-max:hover,
+.titlebar-button.titlebar-restore:hover {
+  background: rgb(207,181,59) !important;
+}
+/*---*/
+
+
+
+
