@@ -56,20 +56,24 @@
   }
 }
 
-/*hide back and forward buttons when not active */
-#forward-button[disabled],
-#back-button[disabled] {
+/*hide back, forward and reload buttons when not active */
+#back-button[disabled],
+#reload-button[disabled],
+#forward-button[disabled] {
   display: none;
 }
 
 /*home button is not centered wtf */
 #home-button {
-  padding: 0px 0px 1px 0px !important;
+  padding: 0px 0px 1px 1px !important;
 }
 /*more compact button spaces */
 #forward-button,
 #back-button,
-#downloads-button,
+#downloads-button {
+  padding: 1px !important;
+}
+
 #reload-button {
   padding: 0px !important;
 }
@@ -107,8 +111,6 @@
   padding: 2px !important;
   width: 20px !important;
   height: 20px !important;
-  margin-top: 1px !important;
-  margin-left: 1px !important;
 }
 
 /*hide the close button from non active tabs */
@@ -144,16 +146,18 @@
   margin: 0px !important;
 }
 
-/*tabs smaller when not focused */
-.tabbrowser-tab {
-  transition: min-width 0.3s cubic-bezier(0.270, 0.910, 0.435, 1.280), 
-              max-width 0.3s cubic-bezier(0.270, 0.910, 0.435, 1.280), 
-              height 0.1s ease !important;
-  height: 100%;
+/*tabs smaller when not focused translateX*/
+.tabbrowser-tab[style=""] {
+  transition: min-width var(--speed) cubic-bezier(0.270, 0.910, 0.435, 1.280), 
+              max-width var(--speed) cubic-bezier(0.270, 0.910, 0.435, 1.280), 
+              height 100ms ease !important; 
+  transition-delay: translateX 5s !important;
 }
+
 .tabbrowser-tab[fadein]:not([pinned]) {
   max-width: 150px !important;
 }
+
 .tabbrowser-tab[selected]:not([pinned]) {
   min-width: 250px !important;
   max-width: 250px !important;
@@ -177,7 +181,3 @@
   background: rgb(207,181,59) !important;
 }
 /*---*/
-
-
-
-
