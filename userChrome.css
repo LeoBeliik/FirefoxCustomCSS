@@ -35,16 +35,16 @@
 /* slide urlbar-container */
   #urlbar-container {
     padding-bottom: 5px !important;
-    transform: translateY(-20px) !important;
-    transition: transform var(--speed) ease-in-out !important;
-    transition-delay: var(--hideDelay) !important;
+    transform: translateY(-70px) !important;
+    transition: transform 285ms ease-in-out !important;
+    transition-delay: 780ms !important;
   }
   
   #navigator-toolbox:hover #urlbar-container,
   #navigator-toolbox:focus-within #urlbar-container {
     transform: translateY(0px) !important;
-    transition: transform var(--speed) ease-in !important;
-    transition-delay: var(--showDelay) !important;
+    transition: transform 240ms ease-in !important;
+    transition-delay: 470ms !important;
   }
 
 /* instant animation on focus */
@@ -56,11 +56,15 @@
   }
 }
 
-/*hide back, forward and reload buttons when not active */
+/*hide back, forward buttons when not active */
 #back-button[disabled],
-#reload-button[disabled],
 #forward-button[disabled] {
   display: none;
+}
+
+/*hide reload button in main page */
+#navigator-toolbox:has(.tabbrowser-tab[label="New Tab"][selected]) #reload-button {
+  display: none !important;
 }
 
 /*home button is not centered wtf */
