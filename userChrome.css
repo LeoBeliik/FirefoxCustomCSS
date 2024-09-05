@@ -51,26 +51,32 @@
   #navigator-toolbox:focus-within :-moz-any(#nav-bar) {
     transition: none !important;
   }
+  
   #navigator-toolbox:focus-within #urlbar-container {
     transition: none !important;
   }
-}
 
 /*hide back, forward buttons when not active */
-#back-button[disabled],
-#forward-button[disabled] {
-  display: none;
-}
-
-/*hide reload button in main page */
-#navigator-toolbox:has(.tabbrowser-tab[label="New Tab"][selected]) #reload-button {
-  display: none !important;
+  #back-button[disabled],
+  #forward-button[disabled] {
+    display: none;
+  }
+  
+  #navigator-toolbox:has(.tabbrowser-tab[label="New Tab"][selected]),
+  #navigator-toolbox:has(.tabbrowser-tab[label="New Private Tab"][selected])  {
+    #reload-button,
+    #stop-button,
+    #home-button {
+      display: none !important;
+    }
+  }
 }
 
 /*home button is not centered wtf */
 #home-button {
   padding: 0px 0px 1px 1px !important;
 }
+
 /*more compact button spaces */
 #forward-button,
 #back-button,
@@ -150,11 +156,11 @@
   margin: 0px !important;
 }
 
-/*tabs smaller when not focused translateX*/
+/*tabs smaller when not focused */
 .tabbrowser-tab[style=""] {
   transition: min-width var(--speed) cubic-bezier(0.270, 0.910, 0.435, 1.280), 
               max-width var(--speed) cubic-bezier(0.270, 0.910, 0.435, 1.280), 
-              height 100ms ease !important; 
+              height 100ms ease !important;
   transition-delay: translateX 5s !important;
 }
 
@@ -179,7 +185,6 @@
 .titlebar-button.titlebar-min:hover {
   background: rgb(65,105,225) !important;
 }
-
 .titlebar-button.titlebar-max:hover,
 .titlebar-button.titlebar-restore:hover {
   background: rgb(207,181,59) !important;
