@@ -20,16 +20,25 @@
   }
 
 /* show nav-bar on navigator-toolbox hover/focus */
-  #navigator-toolbox:hover :-moz-any(#nav-bar),
-  #navigator-toolbox:focus-within :-moz-any(#nav-bar) {
-    opacity: 100 !important;
-    min-height: 32px !important;
-    max-height: 32px !important;
-    margin-top: 0px !important;
-    margin-bottom: -32px !important;
-    transition: all var(--speed) ease-in !important;
-    transition-delay: var(--showDelay) !important;
-    z-index: 5 !important;
+  #navigator-toolbox:hover,
+  #navigator-toolbox:focus-within,
+  #navigator-toolbox:has(#downloads-button:not([hidden="true"])) {
+    #nav-bar {
+      opacity: 100 !important;
+      min-height: 32px !important;
+      max-height: 32px !important;
+      margin-top: 0px !important;
+      margin-bottom: -32px !important;
+      transition: all var(--speed) ease-in !important;
+      transition-delay: var(--showDelay) !important;
+      z-index: 5 !important;
+    }
+    
+    #urlbar-container {
+      transform: translateY(0px) !important;
+      transition: transform 240ms ease-in !important;
+      transition-delay: 470ms !important;    
+    }
   }
 
 /* slide urlbar-container */
@@ -39,21 +48,16 @@
     transition: transform 285ms ease-in-out !important;
     transition-delay: 780ms !important;
   }
-  
-  #navigator-toolbox:hover #urlbar-container,
-  #navigator-toolbox:focus-within #urlbar-container {
-    transform: translateY(0px) !important;
-    transition: transform 240ms ease-in !important;
-    transition-delay: 470ms !important;
-  }
 
 /* instant animation on focus */
-  #navigator-toolbox:focus-within :-moz-any(#nav-bar) {
-    transition: none !important;
-  }
-  
-  #navigator-toolbox:focus-within #urlbar-container {
-    transition: none !important;
+  #navigator-toolbox:focus-within {
+    #nav-bar {
+      transition: none !important;
+    }
+    
+    #urlbar-container {
+      transition: none !important;
+    }
   }
 
 /*hide back, forward buttons when not active */
