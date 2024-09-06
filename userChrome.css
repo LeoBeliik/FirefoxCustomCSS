@@ -73,6 +73,10 @@
     #home-button {
       display: none !important;
     }
+    
+    #urlbar-container {
+      margin-left: 10px !important;
+    }
   }
 }
 
@@ -161,11 +165,10 @@
 }
 
 /*tabs smaller when not focused */
-.tabbrowser-tab[style=""] {
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab {
   transition: min-width var(--speed) cubic-bezier(0.270, 0.910, 0.435, 1.280), 
               max-width var(--speed) cubic-bezier(0.270, 0.910, 0.435, 1.280), 
               height 100ms ease !important;
-  transition-delay: translateX 5s !important;
 }
 
 .tabbrowser-tab[fadein]:not([pinned]) {
