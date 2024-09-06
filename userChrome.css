@@ -2,7 +2,7 @@
   --showDelay: 500ms;
   --hideDelay: 750ms;
   --speed: 250ms;
-  --sidebarWidth: 450px;
+  --sidebarWidth: 460px;
 }
 
 /*ignore when customizing*/
@@ -29,15 +29,13 @@
       max-height: 32px !important;
       margin-top: 0px !important;
       margin-bottom: -32px !important;
-      transition: all var(--speed) ease-in !important;
-      transition-delay: var(--showDelay) !important;
+      transition: all var(--speed) ease-in var(--showDelay) !important;
       z-index: 5 !important;
     }
     
     #urlbar-container {
       transform: translateY(0px) !important;
-      transition: transform 240ms ease-in !important;
-      transition-delay: 470ms !important;    
+      transition: transform 240ms ease-in 470ms !important;
     }
   }
 
@@ -45,22 +43,15 @@
   #urlbar-container {
     padding-bottom: 5px !important;
     transform: translateY(-70px) !important;
-    transition: transform 285ms ease-in-out !important;
-    transition-delay: 780ms !important;
+    transition: transform 285ms ease-in-out 780ms !important;
   }
 
 /* instant animation on focus */
-  #navigator-toolbox:focus-within {
-    #nav-bar {
-      transition: none !important;
-    }
-    
-    #urlbar-container {
-      transition: none !important;
-    }
+  #navigator-toolbox:focus-within #urlbar-container {
+      margin-top: 3px !important;
   }
 
-/*hide back, forward buttons when not active */
+/* hide back, forward buttons when not active */
   #back-button[disabled],
   #forward-button[disabled] {
     display: none;
@@ -78,6 +69,17 @@
       margin-left: 10px !important;
     }
   }
+  
+/* fix url dropdown eating the urlbar*/  
+  .urlbar-input-container:focus-within {
+    height: 32px !important;
+  }
+}
+
+/*no url background when unnecessary */
+#urlbar:not(:hover):not([breakout][breakout-extend]) > #urlbar-background {
+  box-shadow: none!important; 
+  background: #0000 !important;
 }
 
 /*home button is not centered wtf */
@@ -99,9 +101,9 @@
 /*floating Bookmarks and History panels */
 #sidebar-box {
   position: fixed !important;
-  top: 2px !important;
-  bottom: 2px !important;
-  left: 0px !important;
+  top: 36px !important;
+  bottom: 5px !important;
+  left: 1px !important;
   width: var(--sidebarWidth) !important;
   border-radius: 8px !important;
   border: 2px solid rgb(113, 112, 120) !important;
