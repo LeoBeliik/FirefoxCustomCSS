@@ -14,8 +14,7 @@
     max-height: 0px !important;
     margin-top: 0px !important;
     margin-bottom: -0px !important;
-    transition: all var(--speed) ease-in-out !important;
-    transition-delay: var(--hideDelay) !important;
+    transition: all var(--speed) ease-in-out var(--hideDelay) !important;
     z-index: -5 !important;
   }
 
@@ -45,41 +44,47 @@
     transform: translateY(-70px) !important;
     transition: transform 285ms ease-in-out 780ms !important;
   }
-
-/* instant animation on focus */
-  #navigator-toolbox:focus-within #urlbar-container {
-      margin-top: 3px !important;
-  }
-
-/* hide back, forward buttons when not active */
-  #back-button[disabled],
-  #forward-button[disabled] {
-    display: none;
-  }
   
   #navigator-toolbox:has(.tabbrowser-tab[label="New Tab"][selected]),
   #navigator-toolbox:has(.tabbrowser-tab[label="New Private Tab"][selected])  {
-    #reload-button,
-    #stop-button,
-    #home-button {
-      display: none !important;
-    }
-    
     #urlbar-container {
       margin-left: 10px !important;
     }
+    
+    #reload-button {
+      margin-right: -10px !important;
+    }
   }
   
-/* fix url dropdown eating the urlbar*/  
+/* fix url dropdown eating the urlbar*/
   .urlbar-input-container:focus-within {
     height: 32px !important;
   }
-}
+  
+  #navigator-toolbox:focus-within {
+    #urlbar-container {
+      transition: none !important;
+      margin-top: 3px !important;
+    }
+    
+    #nav-bar {
+      transition: none !important;
+    }
+  }
+/* no url background when unnecessary */
+  #urlbar:not(:hover):not([breakout][breakout-extend]) > #urlbar-background {
+    box-shadow: none!important;
+    background: #0000 !important;
+  }
+  
+  #urlbar:not(:hover :focus-within) {
+    margin-bottom: -1px !important;
+  }
 
-/*no url background when unnecessary */
-#urlbar:not(:hover):not([breakout][breakout-extend]) > #urlbar-background {
-  box-shadow: none!important; 
-  background: #0000 !important;
+/* hide bottom of tab bar */
+  .tab-background {
+    min-height: 0 !important;
+  }
 }
 
 /*home button is not centered wtf */
@@ -118,8 +123,7 @@
 /*hide new tab button when not hovering */
 #tabs-newtab-button {
   opacity: 0;
-  transition: var(--speed) opacity ease;
-  transition-delay: var(--speed) !important;
+  transition: var(--speed) opacity var(--speed) ease;
 }
 
 #navigator-toolbox:hover #tabs-newtab-button {
@@ -147,11 +151,6 @@
 
 #tabbrowser-tabs .tab-close-button:hover {
   background-color: rgb(182, 21, 35) !important;
-}
-
-/*hide bottom of tab bar */
-.tab-background {
-  min-height: 0 !important;
 }
 
 /*remove spaces from left and right of tabs */
@@ -194,6 +193,7 @@
 .titlebar-button.titlebar-min:hover {
   background: rgb(65,105,225) !important;
 }
+
 .titlebar-button.titlebar-max:hover,
 .titlebar-button.titlebar-restore:hover {
   background: rgb(207,181,59) !important;
