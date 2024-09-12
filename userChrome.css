@@ -20,8 +20,7 @@
 
 /* show nav-bar on navigator-toolbox hover/focus */
   #navigator-toolbox:hover,
-  #navigator-toolbox:focus-within,
-  #navigator-toolbox:has(#downloads-button:not([hidden="true"])) {
+  #navigator-toolbox:focus-within {
     #nav-bar {
       opacity: 100 !important;
       min-height: 32px !important;
@@ -70,18 +69,23 @@
     #nav-bar {
       transition: none !important;
     }
+    
+    #urlbar[breakout] {
+      margin-left: 5px !important;
+      
+      .urlbar-input-container {
+        padding-bottom: 0px !important;
+      }
+    }
   }
-/* no url background when unnecessary */
+  
+  /*no url background when unnecessary */
   #urlbar:not(:hover):not([breakout][breakout-extend]) > #urlbar-background {
     box-shadow: none!important;
     background: #0000 !important;
   }
-  
-  #urlbar:not(:hover :focus-within) {
-    margin-bottom: -1px !important;
-  }
 
-/* hide bottom of tab bar */
+/*hide bottom of tab bar */
   .tab-background {
     min-height: 0 !important;
   }
@@ -198,4 +202,60 @@
 .titlebar-button.titlebar-restore:hover {
   background: rgb(207,181,59) !important;
 }
-/*---*/
+
+/*remove some sub menus on right click*/
+#context-savepage,
+#context-pocket, 
+#context-take-screenshot,
+#context-sep-screenshots,  
+#context-viewsource,
+#context-inspect,
+#context-media-eme-separator, 
+#context-inspect-a11y,
+#context-translate-selection,
+#context-viewpartialsource-selection,
+#context-print-selection,
+#urlbar menuitem[cmd="cmd_copy"],
+#context-copylink,
+#context-copyemail,  
+#context-savelinktopocket, 
+#context-savelink,
+#context-sendimage,
+#context-setDesktopBackground,
+#context-video-pictureinpicture,
+#context-sendaudio,
+#context-sendvideo,
+#tabContextMenu #context_moveTabOptions, 
+#tabContextMenu .share-tab-url-item, 
+/*addons */
+#admin_2fas_com-menuitem-_twofas-context-menu,
+#ublock0_raymondhill_net-menuitem-_uBlock0-blockElement,
+#_446900e4-71c2-419f-a6a7-df9c091e268b_-menuitem-_root {
+  display: none !important;
+}
+
+/*short the text for search menu*/
+#context-searchselect,
+#context-stripOnShareLink,
+#urlbar menuitem[id="strip-on-share"] {
+  label.menu-text {
+    display: none !important;
+  }
+}
+
+#context-searchselect label:after {
+  content: "Search on Google" !important;
+  margin-left: -8px !important;
+  color: #fff !important;
+}
+
+#context-stripOnShareLink,
+#urlbar menuitem[id="strip-on-share"] {
+  label:after {
+    content: "Copy" !important;
+    margin-left: -8px !important;
+    color: #fff !important;
+  }
+}
+
+/*----*/
