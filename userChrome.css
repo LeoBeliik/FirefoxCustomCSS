@@ -227,6 +227,8 @@
 #context-sendvideo,
 #tabContextMenu #context_moveTabOptions, 
 #tabContextMenu .share-tab-url-item, 
+#context-sep-setbackground,
+#context-sep-sharing,
 /*addons */
 #admin_2fas_com-menuitem-_twofas-context-menu,
 #ublock0_raymondhill_net-menuitem-_uBlock0-blockElement,
@@ -245,15 +247,15 @@
 
 #context-searchselect label:after {
   content: "Search on Google" !important;
-  margin-left: -8px !important;
+  margin-left: -9px !important;
   color: #fff !important;
 }
 
 #context-stripOnShareLink,
 #urlbar menuitem[id="strip-on-share"] {
   label:after {
-    content: "Copy" !important;
-    margin-left: -8px !important;
+    content: "Copy Link" !important;
+    margin-left: -9px !important;
     color: #fff !important;
   }
 }
