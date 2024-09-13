@@ -77,6 +77,16 @@
     margin-left: 2px !important;
   }
   &:has(.tabbrowser-tab[label="New Tab"][selected]) {
+    &:has(#back-button:not([disabled])) #TabsToolbar,
+    &:has(#forward-button:not([disabled])) #TabsToolbar,
+    &:has(#downloads-button:not([hidden])) #TabsToolbar {
+      margin-left: calc(1325px / 100 * var(--NavbarWidth) - 22px) !important;
+    }
+    &:has(#back-button:not([disabled])):has(#forward-button:not([disabled])) #TabsToolbar,
+    &:has(#back-button:not([disabled])):has(#downloads-button:not([hidden])) #TabsToolbar,
+    &:has(#forward-button:not([disabled])):has(#downloads-button:not([hidden])) #TabsToolbar {
+      margin-left: calc(1325px / 100 * var(--NavbarWidth) + 4px) !important;
+    }
     #reload-button,
     #stop-button,
     #home-button {
