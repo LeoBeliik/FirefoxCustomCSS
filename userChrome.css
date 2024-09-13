@@ -1,26 +1,20 @@
-/*TODO: 
-* urlbar hides too fast
-* change firefox tab logo for search logo
-* hide the icons in the urlbar when no focus/hover and use the search icon
-*/
-
-:root {
+:root { /*  For windows  */
   --WindowDraggingFromNewtabButton: no-drag
 
-}  /*  For windows  */
-/*
-:root{--WindowDraggingFromNewtabButton: drag !important}  /* For linux */
+}
+/* For linux
+:root{--WindowDraggingFromNewtabButton: drag !important}  
+*/
 :root {
   --tab-border-radius: 3px !important;
-  --NavbarWidth: 13;
+  --NavbarWidth: 10.35;
   --TabsHeight: 36;
   --TabsBorder: 8;
   --NavbarHeightSmall: calc(var(--TabsHeight) + var(--TabsBorder));
   --speed: 250ms;
 }
-
 /*only when not in settongs or new tab*/
-#navigator-toolbox:has(.tabbrowser-tab:not([label="New Tab"], [label="Settings"])[selected]) {
+#navigator-toolbox:has(.tabbrowser-tab:not([label="Settings"])[selected]) {
   #nav-bar {
     margin-top: calc(var(--TabsHeight) * -1px - var(--TabsBorder) * 1px)!important;
     height: calc(var(--TabsHeight) * 1px + var(--TabsBorder) * 1px);
@@ -29,55 +23,83 @@
   #TabsToolbar {
     margin-left: calc(1325px / 100 * var(--NavbarWidth)) !important;
   }
-  &:has(#forward-button:not([disabled])) #TabsToolbar {
-    margin-left: calc(1325px / 100 * var(--NavbarWidth) + 30px) !important;
-  }
-  &:has(#back-button[disabled]) #TabsToolbar {
-    margin-left: calc(1325px / 100 * var(--NavbarWidth) - 30px) !important;
-  }
+  &:has(#back-button:not([disabled])) #TabsToolbar,
+  &:has(#forward-button:not([disabled])) #TabsToolbar,
   &:has(#downloads-button:not([hidden])) #TabsToolbar {
-    margin-left: calc(1325px / 100 * var(--NavbarWidth) + 30px) !important;
+    margin-left: calc(1325px / 100 * var(--NavbarWidth) + 27px) !important;
+  }
+  &:has(#back-button:not([disabled])):has(#forward-button:not([disabled])) #TabsToolbar,
+  &:has(#back-button:not([disabled])):has(#downloads-button:not([hidden])) #TabsToolbar,
+  &:has(#forward-button:not([disabled])):has(#downloads-button:not([hidden])) #TabsToolbar {
+    margin-left: calc(1325px / 100 * var(--NavbarWidth) + 53px) !important;
+  }
+  &:has(#back-button:not([disabled])):has(#forward-button:not([disabled])):has(#downloads-button:not([hidden])) #TabsToolbar {
+    margin-left: calc(1325px / 100 * var(--NavbarWidth) + 77px) !important;
   }
   toolbarspring {
     display: none !important;
   }
+  #urlbar:not(:focus-within) {
+    #tracking-protection-icon-container {
+      pointer-events: none !important;
+      padding-right: 10px !important;
+    }
+    #tracking-protection-icon {
+      list-style-image: url("chrome://browser/skin/preferences/category-search.svg") !important;
+    }
+  }
   #urlbar-container {
-    width: 24px !important;
+    width: 35px !important;
   }
   #urlbar {
-    width: 24px !important;
+    width: 30px !important;
   }
-  &:has(#urlbar:hover),
   &:has(#urlbar:focus-within) {
     #nav-bar {
       margin-right: 175px !important;
     }
     #urlbar {
-      width: 100% !important;
+      width: 99% !important;
       transition: width 500ms linear 500ms !important;
     }
   }
   &:has(#urlbar:focus-within) #urlbar {
     transition: none !important;
   }
-  #urlbar:not([breakout-extend]):hover {
-    outline: 2px auto aqua !important;
+  #urlbar:not(:focus-within):hover {
+    outline: 1px auto aqua !important;
   }
   #urlbar[breakout-extend] {
     margin-top: 3px !important;
     margin-left: 12px !important;
   }
-}
-#navigator-toolbox:has(.tabbrowser-tab[label="New Tab"][selected]) {
-  #reload-button,
-  #stop-button,
-  #home-button {
-    display: none !important;
+  .urlbar-input-container {
+    margin-left: 2px !important;
   }
-  #urlbar[breakout-extend] {
-    margin-left: 10px !important;
-    margin-top: 3px !important;
-    width: 98% !important;
+  &:has(.tabbrowser-tab[label="New Tab"][selected]) {
+    #reload-button,
+    #stop-button,
+    #home-button {
+      display: none !important;
+    }
+    #TabsToolbar {
+      margin-left: calc(1325px / 100 * var(--NavbarWidth) - 48px) !important;
+    }
+    .urlbar-input-container {
+      margin-left: -4px !important;
+    }
+    #urlbar[breakout-extend] {
+      max-width: 99% !important;
+      margin-top: 34px !important;
+    }
+    &:not(:has(#urlbar[breakout-extend])) {
+      #nav-bar {
+        margin-right: auto !important;
+      }
+      #urlbar {
+        width: 30px !important;
+      }
+    }
   }
 }
 #nav-bar,
@@ -89,7 +111,6 @@
   margin-bottom: -1px !important;
   transition: all 150ms linear !important;
 }
-
 /*Removes flash before loading pages  */
 :root {
   --tabpanel-background-color: -moz-Dialog !important;
@@ -98,37 +119,38 @@
 .titlebar-spacer[type="post-tabs"] {
   display: none !important;
 }
-
 /*Makes some buttons nicer  */
 #unified-extensions-button,
 #back-button,
 #forward-button,
-#home-button {
-  padding: 2px !important;
-  margin: 5px -1px 0px -1px !important;
-}
-#PanelUI-menu-button {
-  padding: 2px !important;
-  margin: 5px -5px -1px -1px !important;
+#home-button,
+#downloads-button,
+#PanelUI-menu-button,
+#reload-button,
+#stop-button {
+  padding: 0px !important;
+  margin: 6px -2px 0px 0px !important;
 }
 #reload-button,
 #stop-button {
-  margin: 7px -5px 0px -4px !important;
+  margin-top: 9px !important;
+  margin-right: -4px !important;
 }
-#downloads-button {
-  margin: 7px -10px 0px -2px !important;
+#back-button,
+#forward-button {
+  margin-top: 7px !important;
 }
-
+#home-button {
+  margin-left: -1px !important;
+}
 /*Removes annoying border  */
 #navigator-toolbox {
   border:none !important;
 }
-
 /*Makes the space between the reload button and the urlbar less akwardly large  */
 #urlbar-container {
-  margin: 7px 20px 0px -4px !important;
+  margin: 8px 4px 0px -4px !important;
 }
-
 /*  Navbar buttons order  */
 #nav-bar {
   direction: rtl;
@@ -137,7 +159,6 @@
 #customizationui-widget-panel {
   direction: ltr !important;
 }
-
 /*  Devtools  */
 .devtools-horizontal-splitter {
   margin-top: 7px !important;
@@ -152,15 +173,13 @@
   border-radius: 10px;
 }
 #customization-panelWrapper {
-  max-width: 30em!important;
+  max-width: 30em !important;
 }  
-
 /*Fixes the customization page  */
 #customization-container > * {
   margin-top: -10px;
   background-color: -moz-Dialog !important;
 }
-
 /*Private tabs  */
 [privatebrowsingmode="temporary"] #PanelUI-menu-button > .toolbarbutton-badge-stack {
   fill: currentColor !important;
@@ -170,7 +189,6 @@
 #private-browsing-indicator-with-label {
   display: none;
 }
-
 /*  Notification  */
 #tab-notification-deck .container.infobar {
   background: -moz-Dialog !important;
@@ -178,7 +196,6 @@
 #tab-notification-deck .notificationbox-stack {
   background: transparent !important;
 }
-
 /*  Customization navbar fix  */
 #wrapper-urlbar-container {
   width: 100px !important;
@@ -186,7 +203,6 @@
 [title="Flexible Space"] {
   display: none !important;
 }
-
 /*Fullscreen thing  */
 #fullscreen-warning {
   border: none !important;
@@ -195,19 +211,13 @@
 #main-menubar {
   z-index: 1;
 }
-
 /*hide back, forward buttons when not active */
-#back-button[disabled],
-#forward-button[disabled] {
-  display: none;
+:root:not([customizing]) {
+  #back-button[disabled],
+  #forward-button[disabled] {
+    display: none;
+  } 
 }
-
-/*hide reload and home button in new page
-#navigator-toolbox:has(.tabbrowser-tab[label="New Tab"][selected]) #reload-button,
-#navigator-toolbox:has(.tabbrowser-tab[label="New Tab"][selected]) #home-button {
-  display: none !important;
-}*/
-
 /*floating Bookmarks and History panels */
 #sidebar-box {
   position: fixed !important;
@@ -219,7 +229,6 @@
   border: 2px solid rgb(113, 112, 120) !important;
   z-index: 1000 !important;
 }
-
 /*hide new tab button when not hovering */
 #tabs-newtab-button {
   opacity: 0;
@@ -235,11 +244,8 @@
   width: 20px !important;
   height: 20px !important;
 }
-
 /*hide the close button from non active tabs */
-#tabbrowser-tabs .tabbrowser-tab:not([pinned],
-[selected],
-:hover) .tab-close-button {
+#tabbrowser-tabs .tabbrowser-tab:not([pinned], [selected], :hover) .tab-close-button {
   opacity: 0 !important;
 }
 #tabbrowser-tabs .close-icon {
@@ -253,11 +259,10 @@
 }
 
 /*tabs smaller when not focused */
-.tabbrowser-tab[style=""] {
+#tabbrowser-tabs:not([movingtab]) .tabbrowser-tab {
   transition: min-width var(--speed) cubic-bezier(0.270, 0.910, 0.435, 1.280), 
               max-width var(--speed) cubic-bezier(0.270, 0.910, 0.435, 1.280), 
               height 100ms ease !important;
-  transition-delay: translateX 5s !important;
 }
 .tabbrowser-tab[fadein]:not([pinned]) {
   max-width: 150px !important;
@@ -266,7 +271,6 @@
   min-width: 250px !important;
   max-width: 250px !important;
 }
-
 /*minimize, maximize, and close buttons are smaller and closer together*/
 .titlebar-button.titlebar-min,
 .titlebar-button.titlebar-restore,
@@ -274,7 +278,6 @@
 .titlebar-button.titlebar-close {
   width: 8px !important;
 }
-
 /*color the max and min buttons*/
 .titlebar-button.titlebar-min:hover {
   background: rgb(65,105,225) !important;
@@ -283,3 +286,57 @@
 .titlebar-button.titlebar-restore:hover {
   background: rgb(207,181,59) !important;
 }
+/*remove some sub menus on right click*/
+#context-savepage,
+#context-pocket, 
+#context-take-screenshot,
+#context-sep-screenshots,  
+#context-viewsource,
+#context-inspect,
+#context-media-eme-separator, 
+#context-inspect-a11y,
+#context-translate-selection,
+#context-viewpartialsource-selection,
+#context-print-selection,
+#urlbar menuitem[cmd="cmd_copy"],
+#context-copylink,
+#context-copyemail,  
+#context-savelinktopocket, 
+#context-savelink,
+#context-sendimage,
+#context-setDesktopBackground,
+#context-video-pictureinpicture,
+#context-sendaudio,
+#context-sendvideo,
+#tabContextMenu #context_moveTabOptions, 
+#tabContextMenu .share-tab-url-item, 
+#context-sep-setbackground,
+#context-sep-sharing,
+/*addons */
+#admin_2fas_com-menuitem-_twofas-context-menu,
+#ublock0_raymondhill_net-menuitem-_uBlock0-blockElement,
+#_446900e4-71c2-419f-a6a7-df9c091e268b_-menuitem-_root {
+  display: none !important;
+}
+/*short the text for search menu*/
+#context-searchselect,
+#context-stripOnShareLink,
+#urlbar menuitem[id="strip-on-share"] {
+  label.menu-text {
+    display: none !important;
+  }
+}
+#context-searchselect label:after {
+  content: "Search on Google" !important;
+  margin-left: -9px !important;
+  color: #fff !important;
+}
+#context-stripOnShareLink,
+#urlbar menuitem[id="strip-on-share"] {
+  label:after {
+    content: "Copy Link" !important;
+    margin-left: -9px !important;
+    color: #fff !important;
+  }
+}
+/*----*/
