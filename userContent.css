@@ -1,0 +1,5 @@
+@-moz-document url("about:home"), url("about:newtab"), url(about:privatebrowsing) {
+	.logo-and-wordmark { 
+		margin-top: -200px !important; 
+	}
+}
