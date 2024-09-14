@@ -13,7 +13,7 @@
   --NavbarHeightSmall: calc(var(--TabsHeight) + var(--TabsBorder));
   --speed: 250ms;
 }
-/*only when not in settongs or new tab*/
+/*only when not in settings*/
 #navigator-toolbox:has(.tabbrowser-tab:not([label="Settings"])[selected]) {
   #nav-bar {
     margin-top: calc(var(--TabsHeight) * -1px - var(--TabsBorder) * 1px)!important;
@@ -76,7 +76,7 @@
   .urlbar-input-container {
     margin-left: 2px !important;
   }
-  &:has(.tabbrowser-tab[label="New Tab"][selected]) {
+  &:has(.tabbrowser-tab[label="New Tab"][selected], [label="New Private Tab"][selected]) {
     &:has(#back-button:not([disabled])) #TabsToolbar,
     &:has(#forward-button:not([disabled])) #TabsToolbar,
     &:has(#downloads-button:not([hidden])) #TabsToolbar {
@@ -143,7 +143,7 @@
 }
 #reload-button,
 #stop-button {
-  margin-top: 9px !important;
+  margin-top: 8px !important;
   margin-right: -4px !important;
 }
 #back-button,
