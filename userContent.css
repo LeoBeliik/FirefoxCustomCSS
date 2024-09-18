@@ -1,5 +1,13 @@
+@media screen and (min-height:721px),
 @-moz-document url("about:home"), url("about:newtab"), url(about:privatebrowsing) {
 	.logo-and-wordmark { 
 		margin-top: -200px !important; 
+	}
+}
+
+@media screen and (max-height:720px),
+@-moz-document url("about:home"), url("about:newtab"), url(about:privatebrowsing) {
+	.logo-and-wordmark { 
+		margin-top: -100px !important; 
 	}
 }
