@@ -7,7 +7,7 @@
 */
 :root {
   --tab-border-radius: 3px !important;
-  --NavbarWidth: 10.35;
+  --NavbarWidth: 14.5;
   --TabsHeight: 36;
   --TabsBorder: 8;
   --NavbarHeightSmall: calc(var(--TabsHeight) + var(--TabsBorder));
@@ -20,21 +20,11 @@
     height: calc(var(--TabsHeight) * 1px + var(--TabsBorder) * 1px);
     margin-right: auto !important;
   }
+  &:has(#downloads-button:not([hidden])) #TabsToolbar {
+    margin-left: calc(1325px / 100 * var(--NavbarWidth) + 20px) !important;
+  }
   #TabsToolbar {
     margin-left: calc(1325px / 100 * var(--NavbarWidth)) !important;
-  }
-  &:has(#back-button:not([disabled])) #TabsToolbar,
-  &:has(#forward-button:not([disabled])) #TabsToolbar,
-  &:has(#downloads-button:not([hidden])) #TabsToolbar {
-    margin-left: calc(1325px / 100 * var(--NavbarWidth) + 27px) !important;
-  }
-  &:has(#back-button:not([disabled])):has(#forward-button:not([disabled])) #TabsToolbar,
-  &:has(#back-button:not([disabled])):has(#downloads-button:not([hidden])) #TabsToolbar,
-  &:has(#forward-button:not([disabled])):has(#downloads-button:not([hidden])) #TabsToolbar {
-    margin-left: calc(1325px / 100 * var(--NavbarWidth) + 53px) !important;
-  }
-  &:has(#back-button:not([disabled])):has(#forward-button:not([disabled])):has(#downloads-button:not([hidden])) #TabsToolbar {
-    margin-left: calc(1325px / 100 * var(--NavbarWidth) + 77px) !important;
   }
   toolbarspring {
     display: none !important;
@@ -77,24 +67,6 @@
     margin-left: 2px !important;
   }
   &:has(.tabbrowser-tab[label="New Tab"][selected], [label="New Private Tab"][selected]) {
-    &:has(#back-button:not([disabled])) #TabsToolbar,
-    &:has(#forward-button:not([disabled])) #TabsToolbar,
-    &:has(#downloads-button:not([hidden])) #TabsToolbar {
-      margin-left: calc(1325px / 100 * var(--NavbarWidth) - 22px) !important;
-    }
-    &:has(#back-button:not([disabled])):has(#forward-button:not([disabled])) #TabsToolbar,
-    &:has(#back-button:not([disabled])):has(#downloads-button:not([hidden])) #TabsToolbar,
-    &:has(#forward-button:not([disabled])):has(#downloads-button:not([hidden])) #TabsToolbar {
-      margin-left: calc(1325px / 100 * var(--NavbarWidth) + 4px) !important;
-    }
-    #reload-button,
-    #stop-button,
-    #home-button {
-      display: none !important;
-    }
-    #TabsToolbar {
-      margin-left: calc(1325px / 100 * var(--NavbarWidth) - 48px) !important;
-    }
     .urlbar-input-container {
       margin-left: -4px !important;
     }
@@ -169,22 +141,6 @@
 #customizationui-widget-panel {
   direction: ltr !important;
 }
-/*  Devtools  */
-.devtools-horizontal-splitter {
-  margin-top: 7px !important;
-  margin-bottom:-12px !important;
-  opacity: 0;
-}
-.devtools-side-splitter {
-  opacity: 0;
-}
-.devtools-toolbox-side-iframe {
-  margin-top: -10px;
-  border-radius: 10px;
-}
-#customization-panelWrapper {
-  max-width: 30em !important;
-}  
 /*Fixes the customization page  */
 #customization-container > * {
   margin-top: -10px;
@@ -221,13 +177,6 @@
 #main-menubar {
   z-index: 1;
 }
-/*hide back, forward buttons when not active */
-:root:not([customizing]) {
-  #back-button[disabled],
-  #forward-button[disabled] {
-    display: none;
-  } 
-}
 /*floating Bookmarks and History panels */
 #sidebar-box {
   position: fixed !important;
@@ -255,8 +204,8 @@
   height: 20px !important;
 }
 /*hide the close button from non active tabs */
-#tabbrowser-tabs .tabbrowser-tab:not([pinned], [selected], :hover) .tab-close-button {
-  opacity: 0 !important;
+#tabbrowser-tabs .tabbrowser-tab:not([pinned], [selected]) .tab-close-button {
+  display: none !important;
 }
 #tabbrowser-tabs .close-icon {
   padding: 1px !important;
@@ -312,7 +261,6 @@
 #context-copylink,
 #context-copyemail,  
 #context-savelinktopocket, 
-#context-savelink,
 #context-sendimage,
 #context-setDesktopBackground,
 #context-video-pictureinpicture,
