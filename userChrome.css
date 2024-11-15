@@ -14,14 +14,14 @@
   --speed: 250ms;
 }
 /*only when not in settings*/
-#navigator-toolbox:has(.tabbrowser-tab:not([label="Settings"])[selected]) {
+#navigator-toolbox:has(.tabbrowser-tab:not([label="Customize Firefox"])[selected]) {
   #nav-bar {
     margin-top: calc(var(--TabsHeight) * -1px - var(--TabsBorder) * 1px)!important;
     height: calc(var(--TabsHeight) * 1px + var(--TabsBorder) * 1px);
     margin-right: auto !important;
   }
   &:has(#downloads-button:not([hidden])) #TabsToolbar {
-    margin-left: calc(1325px / 100 * var(--NavbarWidth) + 20px) !important;
+    margin-left: calc(1325px / 100 * var(--NavbarWidth) + 24px) !important;
   }
   #TabsToolbar {
     margin-left: calc(1325px / 100 * var(--NavbarWidth)) !important;
@@ -146,6 +146,24 @@
   margin-top: -10px;
   background-color: -moz-Dialog !important;
 }
+#customization-panelWrapper { 
+  --panel-arrow-offset: 0px !important; 
+}
+#navigator-toolbox:has(.tabbrowser-tab:is([label="Customize Firefox"])[selected]) {
+  #nav-bar {
+    margin-top: -10px !important;
+    margin-bottom: 10px !important;
+  }
+  #nav-bar-overflow-button {
+    margin-top: 5px !important;
+  }
+  #urlbar-background {
+    background: rgb(12,12,12) !important;
+  }
+  #urlbar-container {
+    margin: 6px 12px 0 3px !important;
+  }
+}
 /*Private tabs  */
 [privatebrowsingmode="temporary"] #PanelUI-menu-button > .toolbarbutton-badge-stack {
   fill: currentColor !important;
@@ -216,7 +234,6 @@
 #tabbrowser-tabs .tab-close-button:hover {
   background-color: rgb(182, 21, 35) !important;
 }
-
 /*tabs smaller when not focused */
 #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab {
   transition: min-width var(--speed) cubic-bezier(0.270, 0.910, 0.435, 1.280), 
@@ -258,7 +275,8 @@
 #context-viewpartialsource-selection,
 #context-print-selection,
 #urlbar menuitem[cmd="cmd_copy"],
-#context-copylink,
+#context-stripOnShareLink[disabled="true"],
+#strip-on-share[disabled="true"],
 #context-copyemail,  
 #context-savelinktopocket, 
 #context-sendimage,
@@ -270,6 +288,7 @@
 #tabContextMenu .share-tab-url-item, 
 #context-sep-setbackground,
 #context-sep-sharing,
+#context-sep-sendlinktodevice,
 /*addons */
 #admin_2fas_com-menuitem-_twofas-context-menu,
 #ublock0_raymondhill_net-menuitem-_uBlock0-blockElement,
@@ -277,9 +296,7 @@
   display: none !important;
 }
 /*short the text for search menu*/
-#context-searchselect,
-#context-stripOnShareLink,
-#urlbar menuitem[id="strip-on-share"] {
+#context-searchselect {
   label.menu-text {
     display: none !important;
   }
@@ -289,12 +306,19 @@
   margin-left: -9px !important;
   color: #fff !important;
 }
-#context-stripOnShareLink,
-#urlbar menuitem[id="strip-on-share"] {
-  label:after {
-    content: "Copy Link" !important;
-    margin-left: -9px !important;
-    color: #fff !important;
-  }
-}
 /*----*/
+
+/*Audio Tab Icon */
+.tab-icon-overlay[soundplaying] {
+  /*fill: #058B00 !important;/* var(--green-70) */
+  border: none !important;
+  background-color: transparent !important;
+}
+.tab-icon-overlay[muted] {
+  fill: #D70022 !important;/* var(--red-60) */
+  border: none !important;
+}
+.tab-icon-overlay[activemedia-blocked] {
+  fill: #FFE900 !important;/* var(--yellow-50) */
+  border: none !important;
+}
