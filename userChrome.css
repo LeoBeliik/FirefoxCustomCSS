@@ -30,11 +30,13 @@
     display: none !important;
   }
   #urlbar:not(:focus-within) {
-    #tracking-protection-icon-container {
+    #tracking-protection-icon-container,
+    #identity-box {
       pointer-events: none !important;
       padding-right: 10px !important;
     }
-    #tracking-protection-icon {
+    #tracking-protection-icon,
+    #identity-icon {
       list-style-image: url("chrome://browser/skin/preferences/category-search.svg") !important;
     }
   }
