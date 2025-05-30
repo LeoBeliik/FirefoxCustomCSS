@@ -293,15 +293,14 @@
 #_446900e4-71c2-419f-a6a7-df9c091e268b_-menuitem-_root {
   display: none !important;
 }
-/*short the text for search menu*/
-#context-searchselect {
-  label.menu-text {
-    display: none !important;
-  }
+/* Short the text for search menu */
+menuitem#context-searchselect .menu-text {
+  display: none !important;
 }
-#context-searchselect label:after {
-  content: "Search on Google" !important;
-  margin-left: -9px !important;
+menuitem#context-searchselect::before {
+  display: -moz-inline-box !important;
+  content: "Search this content";
+  cursor: default;
   color: #fff !important;
 }
 /*Audio Tab Icon */
