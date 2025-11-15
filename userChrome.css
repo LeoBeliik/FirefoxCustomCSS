@@ -1,18 +1,26 @@
-:root { /*  For windows  */
-  --WindowDraggingFromNewtabButton: no-drag
-
-}
-/* For linux
-:root{--WindowDraggingFromNewtabButton: drag !important}  
-*/
 :root {
-  --tab-border-radius: 3px !important;
-  --NavbarWidth: 14.5;
-  --TabsHeight: 36;
-  --TabsBorder: 8;
-  --NavbarHeightSmall: calc(var(--TabsHeight) + var(--TabsBorder));
-  --speed: 250ms;
+    --tab-border-radius: 3px !important;
+    --TabsHeight: 36;
+    --TabsBorder: 8;
+    --NavbarHeightSmall: calc(var(--TabsHeight) + var(--TabsBorder));
+    --speed: 250ms;
+    --tabpanel-background-color: -moz-Dialog !important;
 }
+
+@media screen and (min-width:1300px) {
+  :root {
+    --urlbar-width: 300px;
+    --NavbarWidth: 35;
+  }
+}
+
+@media screen and (max-width:1280px) {
+  :root {
+    --urlbar-width: 200px;
+    --NavbarWidth: 27.5;
+  }
+}
+
 /*only when not in settings*/
 #navigator-toolbox:has(.tabbrowser-tab:not([label="Customize Firefox"])[selected]) {
   #nav-bar {
@@ -29,37 +37,14 @@
   toolbarspring {
     display: none !important;
   }
-  #urlbar:not(:focus-within) {
-    #tracking-protection-icon-container,
-    #identity-box {
-      pointer-events: none !important;
-      padding-left: 2px !important;
-    }
-    #tracking-protection-icon,
-    #identity-icon {
-      list-style-image: url("chrome://browser/skin/preferences/category-search.svg") !important;
-    }
-    #tracking-protection-icon-container {
-      margin-left: -7px !important;
-    }
-    #urlbar-search-button {
-      pointer-events: none !important;
-      padding-right: 7px !important;
-    }
-    #urlbar-searchmode-switcher {
-      padding-left: 3px !important;
-      pointer-events: none !important;
-      background-color: transparent !important;
-    }
-    #searchmode-switcher-icon {
-      list-style-image: url("chrome://browser/skin/preferences/category-search.svg") !important;
-    }
-  }
   #urlbar-container {
-    width: 35px !important;
+    width: var(--urlbar-width) !important;;
+  }
+  #star-button-box {
+    margin-right: 4px !important;
   }
   #urlbar {
-    width: 30px !important;
+    width:  var(--urlbar-width) !important;
   }
   &:has(#urlbar:focus-within) {
     #urlbar {
@@ -69,6 +54,7 @@
   &:has(#urlbar:focus-within) #urlbar {
     transition: none !important;
   }
+ 
   #urlbar:not(:focus-within):hover {
     outline: 1px auto aqua !important;
   }
@@ -92,9 +78,29 @@
         margin-right: auto !important;
       }
       #urlbar {
-        width: 30px !important;
+        width:  var(--urlbar-width) !important;
+        margin-bottom: 1x !important;
       }
     }
+  }
+  &:has#navigator-toolbox:has(.tabbrowser-tab[selected]:hover) {
+    #nav-bar {
+      margin-top: -10px !important;
+      margin-bottom: 10px !important;
+    }
+    #nav-bar-overflow-button {
+      margin-top: 5px !important;
+    }
+    #urlbar-background {
+      background: rgb(12,12,12) !important;
+    }
+    #urlbar-container {
+      margin: 6px 12px 0 3px !important;
+    }
+  }
+  /*Prevent tabs from not letting you grab the window in small screens */
+  #tabbrowser-tabs {
+    max-width: 85% !important;
   }
 }
 #nav-bar,
@@ -107,9 +113,6 @@
   transition: all 150ms linear !important;
 }
 /*Removes flash before loading pages  */
-:root {
-  --tabpanel-background-color: -moz-Dialog !important;
-}
 .titlebar-spacer[type="pre-tabs"],
 .titlebar-spacer[type="post-tabs"] {
   display: none !important;
@@ -135,6 +138,10 @@
 #forward-button {
   margin-top: 7px !important;
 }
+/*Hide only tab hover tooltips */
+.tabbrowser-tab > .tab-stack > .tab-content tooltip {
+    display: none !important;
+}
 #home-button {
   margin-left: -1px !important;
 }
@@ -146,7 +153,10 @@
 #urlbar-container {
   margin: 8px 4px 0px 5px !important;
 }
-/*  Navbar buttons order  */
+#tabbrowser-tab-tooltip:not([data-l10n-id="tabbrowser-close-tabs-tooltip"]){
+  visibility: hidden !important;
+}
+/*Navbar buttons order  */
 #nav-bar {
   direction: rtl;
 }
@@ -177,6 +187,29 @@
     margin: 6px 12px 0 3px !important;
   }
 }
+/* Show url when hovering current tab */
+/*
+#navigator-toolbox:has(.tabbrowser-tab[selected]:not(:hover)) {
+   #urlbar:not(:focus-within) {
+    #tracking-protection-icon-container,
+    #identity-box {
+      pointer-events: none !important;
+      padding-right: 10px !important;
+    }
+    #tracking-protection-icon,
+    #identity-icon {
+      list-style-image: url("chrome://browser/skin/preferences/category-search.svg") !important;
+    }
+  }
+}
+#navigator-toolbox:has(.tabbrowser-tab[selected]:hover) {
+    #urlbar {
+        transform: translateY(4vh);
+        width: 50% !important;
+        background: black !important;
+    }
+}*/
+  
 /*Private tabs  */
 [privatebrowsingmode="temporary"] #PanelUI-menu-button > .toolbarbutton-badge-stack {
   fill: currentColor !important;
@@ -186,16 +219,16 @@
 #private-browsing-indicator-with-label {
   display: none;
 }
-/*  Notification  */
+/*Notification  */
 #tab-notification-deck .container.infobar {
   background: -moz-Dialog !important;
 }
 #tab-notification-deck .notificationbox-stack {
   background: transparent !important;
 }
-/*  Customization navbar fix  */
+/*Customization navbar fix  */
 #wrapper-urlbar-container {
-  width: 100px !important;
+  width: 300px !important;
 }
 [title="Flexible Space"] {
   display: none !important;
@@ -302,13 +335,21 @@
 #context-sep-setbackground,
 #context-sep-sharing,
 #context-sep-sendlinktodevice,
-/*addons */
+/*Addons */
 #admin_2fas_com-menuitem-_twofas-context-menu,
 #ublock0_raymondhill_net-menuitem-_uBlock0-blockElement,
 #_446900e4-71c2-419f-a6a7-df9c091e268b_-menuitem-_root {
   display: none !important;
 }
-/* Short the text for search menu */
+/*Removes Firefox Multi-Account Containers icons in urlbar*/
+#userContext-icons, #pageAction-urlbar-_testpilot-containers {
+  display: none !important;
+}
+/*Removes the permissons buttons from the urlbar, leaves one so the container can be expanded*/
+#blocked-permissions-container {
+  display: none !important;
+}
+/*Short the text for search menu */
 menuitem#context-searchselect .menu-text {
   display: none !important;
 }
@@ -317,6 +358,13 @@ menuitem#context-searchselect::before {
   content: "Search this content";
   cursor: default;
   color: #fff !important;
+}
+/*Always copy clean link*/
+menuitem#context-stripOnShareLink .menu-text {
+  display: none !important;
+}
+menuitem#context-stripOnShareLink::before {
+  content: "Copy Link";
 }
 /*Audio Tab Icon */
 .tab-icon-overlay[soundplaying] {
