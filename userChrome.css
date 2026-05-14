@@ -295,12 +295,14 @@
   min-width: 250px !important;
   max-width: 250px !important;
 }
+@media (-moz-platform: windows) {
 /*minimize, maximize, and close buttons are smaller and closer together*/
-.titlebar-button.titlebar-min,
-.titlebar-button.titlebar-restore,
-.titlebar-button.titlebar-max,
-.titlebar-button.titlebar-close {
-  width: 8px !important;
+  .titlebar-button.titlebar-min,
+  .titlebar-button.titlebar-restore,
+  .titlebar-button.titlebar-max,
+  .titlebar-button.titlebar-close {
+    width: 8px !important;
+  }
 }
 /*color the max and min buttons*/
 .titlebar-button.titlebar-min:hover {
@@ -309,6 +311,12 @@
 .titlebar-button.titlebar-max:hover,
 .titlebar-button.titlebar-restore:hover {
   background: rgb(207,181,59) !important;
+}
+/*make close button red in linux*/
+@media (-moz-platform: linux) {
+  .titlebar-button.titlebar-close:hover {
+    background: rgb(250,10,10) !important;
+  }
 }
 /*remove some sub menus on right click*/
 #context-savepage,
@@ -340,7 +348,13 @@
 /*Addons */
 #admin_2fas_com-menuitem-_twofas-context-menu,
 #ublock0_raymondhill_net-menuitem-_uBlock0-blockElement,
-#_446900e4-71c2-419f-a6a7-df9c091e268b_-menuitem-_root {
+#_446900e4-71c2-419f-a6a7-df9c091e268b_-menuitem-_root,
+#simple-translate_sienori-menuitem-_translatePage,
+menuseparator#context-sep-bidi,
+menuseparator#context-sep-sendpagetodevice {
+  display: none !important;
+}
+#context-sep-selectall::before {
   display: none !important;
 }
 /*Removes Firefox Multi-Account Containers icons in urlbar*/
@@ -367,6 +381,10 @@ menuitem#context-stripOnShareLink .menu-text {
 }
 menuitem#context-stripOnShareLink::before {
   content: "Copy Link";
+}
+/*Hide dirty copy link when clean is possible*/
+#contentAreaContextMenu:has(#context-stripOnShareLink:not([disabled="true"]):not([hidden])) #context-copylink {
+    display: none !important;
 }
 /*Audio Tab Icon */
 .tab-icon-overlay[soundplaying] {
