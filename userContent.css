@@ -1,20 +1,15 @@
-@media screen and (min-height:721px),
-@-moz-document url("about:home"), url("about:newtab"), url(about:privatebrowsing) {
-	.logo-and-wordmark { 
-		margin-top: -100px !important; 
-	}
-}
-
-@media screen and (max-height:720px),
-@-moz-document url("about:home"), url("about:newtab"), url(about:privatebrowsing) {
-	.logo-and-wordmark { 
-		margin-top: -50px !important; 
-	}
-}
-
 @-moz-document url("about:home"), url("about:newtab") {
-  .weather {
-    inset-inline: 0% auto !important;
-    transform: translateX(13%);
+  /*Weather widget*/
+  .nova-enabled .sidebar-inline-end {
+    display: block !important;
+    grid-column: 1 !important;
+  }
+
+  .nova-enabled .sidebar-inline-end::after {
+    box-sizing: border-box;	
+  }
+
+  .nova-enabled .weather-widget .widget-title-bar {
+    display: none !important;
   }
 }
