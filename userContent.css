@@ -12,4 +12,13 @@
   .nova-enabled .weather-widget .widget-title-bar {
     display: none !important;
   }
+
+  .top-sites-list { 
+    display: flex; 
+    justify-content: center; 
+  }
+
+  .top-sites-list > li.top-site-outer:not(:has(.pinned)) { 
+    display: none !important; 
+  }
 }
