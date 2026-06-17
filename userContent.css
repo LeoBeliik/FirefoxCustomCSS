@@ -6,19 +6,23 @@
   }
 
   .nova-enabled .sidebar-inline-end::after {
-    box-sizing: border-box;	
+    box-sizing: border-box;
   }
 
   .nova-enabled .weather-widget .widget-title-bar {
     display: none !important;
   }
 
-  .top-sites-list { 
-    display: flex; 
-    justify-content: center; 
+  .nova-enabled .weather-widget {
+    height: 45% !important;
   }
 
-  .top-sites-list > li.top-site-outer:not(:has(.pinned)) { 
-    display: none !important; 
+  .top-sites-list {
+    display: flex;
+    justify-content: center;
+  }
+
+  .top-sites-list > li.top-site-outer:not(:has(.pinned)) {
+    display: none !important;
   }
 }
