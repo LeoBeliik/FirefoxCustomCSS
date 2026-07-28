@@ -140,6 +140,12 @@
 #forward-button {
   margin-top: 7px !important;
 }
+/*Make the search icon not flush on the searchbar*/
+#identity-box[pageproxystate="invalid"] {
+    margin-left: 6px;
+    margin-right: 4px !important;
+ }
+
 /*Hide only tab hover tooltips */
 .tabbrowser-tab > .tab-stack > .tab-content tooltip {
     display: none !important;
@@ -189,28 +195,18 @@
     margin: 6px 12px 0 3px !important;
   }
 }
-/* Show url when hovering current tab */
-/*
-#navigator-toolbox:has(.tabbrowser-tab[selected]:not(:hover)) {
-   #urlbar:not(:focus-within) {
-    #tracking-protection-icon-container,
-    #identity-box {
-      pointer-events: none !important;
-      padding-right: 10px !important;
-    }
-    #tracking-protection-icon,
-    #identity-icon {
-      list-style-image: url("chrome://browser/skin/preferences/category-search.svg") !important;
-    }
-  }
+/*Remove all the Container related stuff*/
+#context_reopenInContainerPopupMenu > menuitem:nth-child(3),
+#context_reopenInContainerPopupMenu > menuitem:nth-child(4),
+#context-openlinkinusercontext-popup > menuitem:nth-child(3),
+#context-openlinkinusercontext-popup > menuitem:nth-child(4),
+#context-openlinkinusercontext-popup > menuseparator:nth-child(2),
+#context-openlinkinusercontext-popup > menuseparator:nth-child(3),
+#context_reopenInContainerPopupMenu > menuseparator:nth-child(2),
+#context_reopenInContainerPopupMenu > menuseparator:nth-child(3) {
+  display: none !important;
 }
-#navigator-toolbox:has(.tabbrowser-tab[selected]:hover) {
-    #urlbar {
-        transform: translateY(4vh);
-        width: 50% !important;
-        background: black !important;
-    }
-}*/
+
   
 /*Private tabs  */
 [privatebrowsingmode="temporary"] #PanelUI-menu-button > .toolbarbutton-badge-stack {
