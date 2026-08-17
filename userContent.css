@@ -1,4 +1,7 @@
 @-moz-document url("about:home"), url("about:newtab") {
+  .logo-and-wordmark {
+    margin-top: -47px !important;
+  }
   /*Weather widget*/
   .nova-enabled .sidebar-inline-end {
     display: block !important;
