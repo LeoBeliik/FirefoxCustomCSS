@@ -1,35 +1,59 @@
-/*Autohide navbar*/
+/*Dark navbar and not tall */
+#nav-bar,
+#TabsToolbar {
+  background-color: black !important;
+}
+
+/*Autohide navbar */
 #nav-bar {
 	position: absolute !important;
 	top: 0 !important;
 	left: 0;
 	right: 0;
-	margin: 0 !important;
+	margin: -1px 0 0 0 !important;
 	padding: 0 !important;
 	overflow: hidden !important;
 	z-index: 9999 !important;
 	opacity: 0 !important;
+  transition: opacity 0.2s ease-out 1.0s, top 0.2s ease-out 1.0s !important;
 }
 
 #urlbar {
 	opacity: 0 !important;
 	pointer-events: none !important;
+  transition: opacity 0.2s ease-out 1.0s !important;
 }
 
 #navigator-toolbox:is(:hover, :focus-within) #nav-bar {
-	top: 32px !important;
+	top: 34px !important;
 	opacity: 1 !important;
-  bottom: -26px !important;
-  padding-top: 3px !important;
+	margin: -1px 0 -1px 0 !important;
+  transition: opacity 0.1s ease-in 0s, top 0.1s ease-in 0s !important;
 }
 
 #navigator-toolbox:is(:hover, :focus-within) #urlbar {
 	opacity: 1 !important;
-	pointer-events: auto !important;
+  pointer-events: auto !important;
+  transition: opacity 0.1s ease-in 0s, top 0.1s ease-in 0s !important;
 }
+
 #navigator-toolbox {
 	position: relative !important;
 	z-index: 10000 !important;
+}
+
+/*Non selected tabs still visible and no circles */
+.tab-background {
+  border-radius: 5px !important;
+  .tabbrowser-tab > .tab-stack > &:not([selected]) {
+    background-color: rgb(15, 15, 15) !important;
+    outline-color: rgb(30, 30, 30) !important;
+  }
+}
+
+/*Push this button up */
+#PanelUI-menu-button {
+  padding-bottom: 6px !important;
 }
 /*Removes flash before loading pages  */
 .titlebar-spacer[type="pre-tabs"],
@@ -39,10 +63,6 @@
 /*Hide only tab hover tooltips */
 .tabbrowser-tab > .tab-stack > .tab-content tooltip {
   display: none !important;
-}
-/*Removes annoying border  */
-#navigator-toolbox {
-  border: none !important;
 }
 /*Makes some buttons nicer  */
 #unified-extensions-button,
@@ -54,17 +74,6 @@
 #stop-button,
 #screenshot-button {
   padding: 0px !important;
-}
-/*Remove all the Container related stuff*/
-#context_reopenInContainerPopupMenu > menuitem:nth-child(3),
-#context_reopenInContainerPopupMenu > menuitem:nth-child(4),
-#context-openlinkinusercontext-popup > menuitem:nth-child(3),
-#context-openlinkinusercontext-popup > menuitem:nth-child(4),
-#context-openlinkinusercontext-popup > menuseparator:nth-child(2),
-#context-openlinkinusercontext-popup > menuseparator:nth-child(3),
-#context_reopenInContainerPopupMenu > menuseparator:nth-child(2),
-#context_reopenInContainerPopupMenu > menuseparator:nth-child(3) {
-  display: none !important;
 }
 /*Private tabs  */
 [privatebrowsingmode="temporary"] #PanelUI-menu-button > .toolbarbutton-badge-stack {
@@ -101,6 +110,7 @@
   border: 2px solid rgb(113, 112, 120) !important;
   z-index: 1000 !important;
 }
+
 /*color the max and min buttons*/
 .titlebar-button.titlebar-min:hover {
   background: rgb(65,105,225) !important;
@@ -185,29 +195,4 @@ menuitem#context-stripOnShareLink::before {
   fill: #fff !important;
   border: none !important;
   background-color: gray !important;
-}
-/*Dark navbar and not tall */
-#nav-bar,
-#TabsToolbar {
-  /*! height: 30px !important; */
-  background-color: black !important;
-}
-#nav-bar-customization-target {
-  margin-bottom: 4px !important;
-}
-/*Non selected tabs still visible and no circles */
-.tab-background {
-  border-radius: 5px !important;
-  :not([selected], [multiselected]) {
-    outline: 10px !important;
-    outline-color: grey !important;
-  }
-}
-/*Lower the downloads panel */
-:is(menupopup, panel) {
-  margin: 0px !important;
-}
-/*Push this button up */
-#PanelUI-menu-button {
-  padding-bottom: 6px !important;
 }
