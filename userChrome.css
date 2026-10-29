@@ -6,40 +6,38 @@
 
 /*Autohide navbar */
 #nav-bar {
-	position: absolute !important;
-	top: 0 !important;
-	left: 0;
-	right: 0;
-	margin: -1px 0 0 0 !important;
-	padding: 0 !important;
-	overflow: hidden !important;
-	z-index: 9999 !important;
-	opacity: 0 !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0;
+  right: 0;
+  margin: -1px 0 0 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  z-index: 9999 !important;
+  opacity: 0 !important;
   transition: opacity 0.2s ease-out 1.0s, top 0.2s ease-out 1.0s !important;
 }
-
 #urlbar {
-	opacity: 0 !important;
-	pointer-events: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
   transition: opacity 0.2s ease-out 1.0s !important;
 }
-
-#navigator-toolbox:is(:hover, :focus-within) #nav-bar {
-	top: 34px !important;
-	opacity: 1 !important;
-	margin: -1px 0 -1px 0 !important;
+#navigator-toolbox:is(:hover, :focus-within) #nav-bar,
+#main-window:has([open], [popupopen]) #navigator-toolbox #nav-bar {
+  top: 34px !important;
+  opacity: 1 !important;
+  margin: -1px 0 -1px 0 !important;
   transition: opacity 0.1s ease-in 0s, top 0.1s ease-in 0s !important;
 }
-
-#navigator-toolbox:is(:hover, :focus-within) #urlbar {
-	opacity: 1 !important;
+#navigator-toolbox:is(:hover, :focus-within) #urlbar,
+#main-window:has([open], [popupopen]) #navigator-toolbox #urlbar {
+  opacity: 1 !important;
   pointer-events: auto !important;
   transition: opacity 0.1s ease-in 0s, top 0.1s ease-in 0s !important;
 }
-
 #navigator-toolbox {
-	position: relative !important;
-	z-index: 10000 !important;
+  position: relative !important;
+  z-index: 10000 !important;
 }
 
 /*Non selected tabs still visible and no circles */
@@ -121,7 +119,9 @@
     background: rgb(207,181,59) !important;
   }
   @media (-moz-platform: linux) {
-    background: rgb(65,105,225) !important;
+    background: rgb(65,
+    105,
+    225) !important;
   }
 }
 /*remove some sub menus on right click*/
@@ -164,7 +164,8 @@ menuseparator#context-sep-sendpagetodevice {
   display: none !important;
 }
 /*Removes Firefox Multi-Account Containers icons in urlbar*/
-#userContext-icons, #pageAction-urlbar-_testpilot-containers {
+#userContext-icons,
+#pageAction-urlbar-_testpilot-containers {
   display: none !important;
 }
 /*Removes the permissons buttons from the urlbar, leaves one so the container can be expanded*/
